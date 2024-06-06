@@ -28,18 +28,13 @@ const Navbar = () => {
                             <li className="nav-item">
                                 <Link className="nav-link active fs-5" aria-current="page" to="/">Home</Link>
                             </li>
-                            {(localStorage.getItem("authToken")) ?
+                            {(!localStorage.getItem("authToken")) ?
                                 <li className="nav-item">
                                     <Link className="nav-link active fs-5" aria-current="page" to="/myOrder">My Orders</Link>
                                 </li>
                                 : ""}
                         </ul>   
-                        {(!localStorage.getItem("authToken")) ?
-                            <div className='d-flex'>
-                                <Link className="btn bg-white text-success mx-1" to="/login">Login</Link>
-                                <Link className="btn bg-white text-success mx-1" to="/createuser">SignUp</Link>
-                            </div>
-                            :
+                        {(localStorage.getItem("authToken")) ?
                             <div>
                                 <div className='btn bg-white text-success mx-2' onClick={()=>{setCartView(true)}}> 
                                 My Cart {"  "}
@@ -48,6 +43,12 @@ const Navbar = () => {
                                 {cartView? <Modal onClose={()=>setCartView(false)}><Cart/></Modal>:null}
                                 <div className='btn bg-white text-danger mx-2' onClick={handleLogout}> Logout</div>
                             </div>
+                                 :
+                            <div className='d-flex'>
+                                <Link className="btn bg-white text-success mx-1" to="/login">Login</Link>
+                                <Link className="btn bg-white text-success mx-1" to="/createuser">SignUp</Link>
+                            </div>
+                            
                         }
 
                     </div>
