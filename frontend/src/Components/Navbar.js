@@ -28,13 +28,13 @@ const Navbar = () => {
                             <li className="nav-item">
                                 <Link className="nav-link active fs-5" aria-current="page" to="/">Home</Link>
                             </li>
-                            {(localStorage.getItem("authToken")) && (
+                            {(!localStorage.getItem("authToken")) && (
                                 <li className="nav-item">
                                     <Link className="nav-link active fs-5" aria-current="page" to="/myOrder">My Orders</Link>
                                 </li>
                             )}
                         </ul>
-                        {(localStorage.getItem("authToken")) ? (
+                        {(!localStorage.getItem("authToken")) ? (
                             <div>
                                 <div className='btn bg-white text-success mx-2' onClick={() => setCartView(true)}> 
                                     My Cart {"  "}
